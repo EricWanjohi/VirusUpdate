@@ -1,6 +1,11 @@
 package ke.co.droidsense.virusupdate.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "CountriesBean")
 public class CountriesBean {
+
     /**
      * Country : Afghanistan
      * CountryCode : AF
@@ -14,6 +19,8 @@ public class CountriesBean {
      * Date : 2020-05-18T13:54:17Z
      */
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String Country;
     private String CountryCode;
     private String Slug;
@@ -26,6 +33,14 @@ public class CountriesBean {
     private String Date;
 
     //Getters and Setters...
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCountry() {
         return Country;

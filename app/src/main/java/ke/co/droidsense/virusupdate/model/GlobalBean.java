@@ -1,6 +1,11 @@
 package ke.co.droidsense.virusupdate.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "GlobalBean")
 public class GlobalBean {
+
     /**
      * NewConfirmed : 80678
      * TotalConfirmed : 4791229
@@ -10,12 +15,22 @@ public class GlobalBean {
      * TotalRecovered : 1733320
      */
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private int NewConfirmed;
     private int TotalConfirmed;
     private int NewDeaths;
     private int TotalDeaths;
     private int NewRecovered;
     private int TotalRecovered;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getNewConfirmed() {
         return NewConfirmed;

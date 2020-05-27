@@ -9,10 +9,12 @@ import androidx.room.TypeConverters;
 
 import ke.co.droidsense.virusupdate.ListAndStringConverters.CountriesBeanConverter;
 import ke.co.droidsense.virusupdate.dao.SummaryResponseDao;
+import ke.co.droidsense.virusupdate.model.CountriesBean;
+import ke.co.droidsense.virusupdate.model.GlobalBean;
 import ke.co.droidsense.virusupdate.model.SummaryResponse;
 
 @TypeConverters(CountriesBeanConverter.class)
-@Database( entities = {SummaryResponse.class}, version = 1)
+@Database( entities = {SummaryResponse.class, CountriesBean.class, GlobalBean.class}, version = 1)
 public abstract class Covid19Database extends RoomDatabase {
     //Member variables.
     private static final String DATABASE = "";
