@@ -17,14 +17,131 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+    /////////////////////////////////////
+
+    def gson_version = '2.8.6'
+    def supportVersion = '27.0.2'
+    def timber_version = "4.7.1"
+    def picasso_version = '2.71828'
+    def firebase_core = "17.4.0"
+    def parceler = '1.1.13'
+    def firebase_ui = "6.2.1"
+    def constraint_layout = "1.1.3"
+    def lifecycle_version = "2.2.0"
+    def arch_version = "2.1.0"
+    def room_version = "2.2.5"
+    def firebase_auth = "19.3.1"
+    def material = "1.0.0"
+    def common_java8 = "1.1.1"
+    def recyclerview = "1.1.0"
+    def firebase_analytics = "17.4.0"
+    def lifecycle_extensions = "2.2.0"
+    def retrofitVersion = '2.7.2'
+
+    //Testing dependencies.
+    def espresso_core = "3.2.0"
+    def junit = "4.13"
+
+    /////////////////////////////////////////////////////////
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.google.android.material:material:1.1.0'
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+
+    //////////////////////////////////////////////////////////
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+
+    //Lifecycle annotation processor.
+    annotationProcessor "android.arch.lifecycle:common-java8:$common_java8"
+
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+    // Annotation processor
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // optional - helpers for implementing LifecycleOwner in a Service
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+
+    // optional - ReactiveStreams support for LiveData
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+
+    // optional - Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:$arch_version"
+
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+
+    //constraint_layout...
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
+
+    //Gson.
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview"
+
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
+
+    //Parceler.
+    implementation "org.parceler:parceler-api:$parceler"
+    annotationProcessor "org.parceler:parceler:$parceler"
+
+    //Timber...
+    implementation "com.jakewharton.timber:timber:$timber_version"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Picasso...
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    //Firebase Analytics.
+    implementation "com.google.firebase:firebase-analytics:$firebase_analytics"
+
+    //Firebase...
+    implementation "com.google.firebase:firebase-core:$firebase_core"
+
+    // Firebase-ui...
+    implementation "com.firebaseui:firebase-ui-database:$firebase_ui"
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_ui"
+
+    //Firebase Auth
+    implementation "com.google.firebase:firebase-auth:$firebase_auth"
+
+    //Room & Lifecycle.
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+
+    //Material Design.
+    implementation "com.google.android.material:material:$material"
+
+    //Toasty
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    //Retrofit.
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 }
