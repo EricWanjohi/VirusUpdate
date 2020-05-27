@@ -37,4 +37,18 @@ public class SummaryResponseViewModel extends AndroidViewModel {
     public LiveData<SummaryResponse> getSummaryResponseLiveData() {
         return summaryResponseLiveData;
     }
+
+    //////////////////////////////// Background tasks ////////////////////////////////////
+
+    public void saveSummaryReport(SummaryResponse summaryResponse){
+        covid_19_repository.saveSummaryResponse( summaryResponse );
+    }
+
+    public void deletSummaryReport(SummaryResponse summaryResponse){
+        covid_19_repository.deleteSummaryResponse( summaryResponse );
+    }
+
+    public void updateSummaryReport(SummaryResponse summaryResponse){
+        covid_19_repository.updateSummaryResponse( summaryResponse );
+    }
 }
