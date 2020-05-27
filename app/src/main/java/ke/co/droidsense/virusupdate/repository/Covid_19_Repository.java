@@ -1,7 +1,9 @@
 package ke.co.droidsense.virusupdate.repository;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -67,5 +69,82 @@ public class Covid_19_Repository {
         } );
 
         return summaryResponseMutableLiveData;
+    }
+
+    ///////////////////////// Public methods to interact with data, db and viewmodel ///////////////
+    public void saveSummaryResponse(SummaryResponse summaryResponse){
+        //New Async Task...
+        new saveSummary(summaryResponseDao).execute(summaryResponse);
+    }
+
+    public void deleteSummaryResponse(SummaryResponse summaryResponse){
+        //New Async Task...
+        new deleteSummary(summaryResponseDao).execute(summaryResponse);
+    }
+
+    public void updateSummaryResponse(SummaryResponse summaryResponse){
+        //New Async Task...
+        new updateSummary(summaryResponseDao).execute(summaryResponse);
+    }
+
+
+    //////////////////////////////// Worker Threads ////////////////////////////////////
+
+    @WorkerThread
+    //Background task extending AsyncTask to save SummaryResponse Objects.
+    private static class saveSummary extends AsyncTask<SummaryResponse, Void, Void> {
+        //Member Variables...
+        private SummaryResponseDao summaryResponseDao;
+
+        public saveSummary(SummaryResponseDao summaryResponseDao) {
+            //Init dao...
+            this.summaryResponseDao = summaryResponseDao;
+        }
+
+        @Override
+        protected Void doInBackground(SummaryResponse... summaryResponses) {
+            //Add object at position 0...
+            summaryResponseDao.addSummaryResponse( summaryResponses[0] );
+            return null;
+        }
+    }
+
+    @WorkerThread
+    //Background task extending AsyncTask to delete SummaryResponse Objects.
+    private static class deleteSummary extends AsyncTask<SummaryResponse, Void, Void>{
+        //Member Variables...
+        private SummaryResponseDao summaryResponseDao;
+
+
+        public deleteSummary(SummaryResponseDao summaryResponseDao) {
+            //Init dao.
+            this.summaryResponseDao = summaryResponseDao;
+        }
+
+        @Override
+        protected Void doInBackground(SummaryResponse... summaryResponses) {
+            //Delete objects at position 0.
+            summaryResponseDao.deleteSummaryResponse( summaryResponses[0] );
+            return null;
+        }
+    }
+
+    @WorkerThread
+    //Background task extending AsyncTask to update SummaryResponse Objects.
+    private static class updateSummary extends AsyncTask<SummaryResponse, Void, Void>{
+        //Member Variable...
+        private SummaryResponseDao summaryResponseDao;
+
+        public updateSummary(SummaryResponseDao summaryResponseDao) {
+            //Init dao...
+            this.summaryResponseDao = summaryResponseDao;
+        }
+
+        @Override
+        protected Void doInBackground(SummaryResponse... summaryResponses) {
+            //Update objects at position 0...
+            summaryResponseDao.updateSummaryResponse( summaryResponses[0] );
+            return null;
+        }
     }
 }
